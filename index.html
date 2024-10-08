@@ -4,118 +4,192 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Klementine Medved Portfolio</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
     <style>
       body,
       html {
         margin: 0;
         padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f7f7f7;
+        font-family: "Roboto", sans-serif;
         color: #333;
+        background-image: url("bg.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
       }
 
+      /* Header Styling */
       header {
-        background: #333;
+        background: #000; /* Set header to black */
         color: #f7f7f7;
         padding: 20px;
-        text-align: center;
+        text-align: left;
         position: fixed;
         width: 100%;
         top: 0;
         z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
       }
 
       header h1 {
         margin: 0;
-        font-size: 2em;
+        font-size: 1.8em;
+        font-weight: 300;
+        letter-spacing: 1px;
       }
 
       nav {
-        text-align: center;
-        margin: 10px;
+        display: flex;
+        align-items: center;
+        padding-right: 20px; /* Added padding to the right */
       }
 
       nav a {
-        color: #a3d9a5;
+        color: #d8d0ba; /* Light sandy color for menu links */
         text-decoration: none;
-        font-size: 1.2em;
+        font-size: 1em;
         margin: 0 15px;
         cursor: pointer;
+        padding: 5px 10px;
       }
 
       nav a:hover {
         text-decoration: underline;
       }
 
-      main {
-        max-width: 1200px;
-        margin: 100px auto 20px auto;
-        padding: 20px;
-        background: #fff;
-        border-radius: 8px;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      .burger {
+        display: none;
+        cursor: pointer;
+        padding-right: 20px; /* Added padding to the right for burger menu */
+      }
+
+      .burger div {
+        width: 25px;
+        height: 3px;
+        background: #d8d0ba;
+        margin: 5px;
         transition: all 0.3s ease;
       }
 
-      .project {
-        margin-bottom: 60px; /* Increased space between projects */
-        border-bottom: 1px solid #ddd;
-        padding-bottom: 20px;
+      /* Main Content Area */
+      main {
+        max-width: 100%;
+        margin: 100px auto 40px auto;
+        padding: 20px;
+        transition: opacity 0.5s ease-in-out;
       }
 
-      .project h2 {
-        font-size: 1.5em;
-        color: #333;
-        margin-top: 0;
+      .section {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        transform: translateY(20px);
       }
 
-      .project p {
-        font-size: 1em;
-        line-height: 1.5;
+      .section.active {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .section h2 {
+        font-size: 2em;
+        margin-bottom: 20px;
+        color: #5e5b52;
+        text-align: center;
+      }
+
+      .section p {
+        line-height: 1.6;
+        margin-bottom: 20px;
         color: #666;
+        text-align: center;
       }
 
-      .project video,
-      .project img {
-        width: 80%; /* Adjusted width for images and videos */
+      .project {
+        margin-bottom: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        padding: 20px;
+        transition: all 0.3s ease;
+      }
+
+      .project img,
+      .project video {
+        width: 70%;
         height: auto;
         border-radius: 8px;
         margin-top: 10px;
         display: block;
-        margin-left: auto;
-        margin-right: auto;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1); /* Floating effect */
+      }
+
+      .project img:hover,
+      .project video:hover {
+        transform: scale(1.03);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.15);
       }
 
       footer {
         text-align: center;
         padding: 20px;
-        background: #333;
+        background: #000; /* Set footer to black */
         color: #f7f7f7;
-        margin-top: 40px;
       }
 
       footer a {
-        color: #a3d9a5;
+        color: #d8d0ba;
         text-decoration: none;
       }
 
       /* Responsive styling */
       @media (max-width: 768px) {
         header h1 {
-          font-size: 1.8em;
+          font-size: 1.5em;
+        }
+
+        nav {
+          display: none;
+          flex-direction: column;
+          align-items: flex-start;
+          background: #444;
+          position: absolute;
+          top: 60px;
+          right: 20px;
+          padding: 10px;
+          border-radius: 8px;
+          box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         }
 
         nav a {
-          font-size: 1em;
+          margin: 5px 0;
         }
 
-        .project h2 {
-          font-size: 1.2em;
+        .burger {
+          display: block;
         }
 
-        .project video,
-        .project img {
-          width: 100%; /* Full width for smaller screens */
+        .project img,
+        .project video {
+          width: 100%; /* Full width on mobile screens */
+          margin: 10px 0;
+        }
+
+        .section h2 {
+          font-size: 1.5em; /* Adjusted title size for mobile */
+        }
+
+        .project {
+          margin-bottom: 30px; /* Adjusted spacing on mobile */
         }
       }
     </style>
@@ -123,17 +197,59 @@
   <body>
     <header>
       <h1>Klementine Medved</h1>
-      <nav>
-        <a id="selected-work-menu" onclick="loadContent('selected-work')"
+      <div class="burger" onclick="toggleMenu()">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+      <nav id="nav">
+        <a id="selected-work-menu" onclick="showSection('selected-work')"
           >Selected Work</a
         >
-        <a id="about-me-menu" onclick="loadContent('about-me')">About Me</a>
-        <a id="contact-menu" onclick="loadContent('contact')">Contact</a>
+        <a id="about-me-menu" onclick="showSection('about-me')">About Me</a>
+        <a id="contact-menu" onclick="showSection('contact')">Contact</a>
       </nav>
     </header>
 
-    <main id="content">
-      <!-- Default content will load the "Selected Work" section -->
+    <main>
+      <!-- Selected Work Section -->
+      <div id="selected-work" class="section active">
+        <div id="showreel" class="project">
+          <video controls>
+            <source src="path-to-showreel.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <div class="project">
+          <img src="Ophelia.jpeg" alt="Project 1 Image" />
+        </div>
+
+        <div class="project">
+          <video controls>
+            <source src="path-to-project2.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+
+      <!-- About Me Section -->
+      <div id="about-me" class="section">
+        <h2>About Me</h2>
+        <p>
+          Klementine Medved is a passionate Director of Photography and
+          Cinematographer with a unique eye for visual storytelling.
+        </p>
+      </div>
+
+      <!-- Contact Section -->
+      <div id="contact" class="section">
+        <h2>Contact</h2>
+        <p>
+          Email:
+          <a href="mailto:klementine@example.com">klementine@example.com</a>
+        </p>
+      </div>
     </main>
 
     <footer>
@@ -144,62 +260,22 @@
     </footer>
 
     <script>
-      // JavaScript function to dynamically load content
-      function loadContent(section) {
-        const contentElement = document.getElementById("content");
-
-        if (section === "selected-work") {
-          contentElement.innerHTML = `
-                <div id="showreel" class="project">
-                    <h2>Showreel</h2>
-                    <p>A collection of Klementine's most notable work as a Director of Photography and Cinematographer.</p>
-                    <video controls>
-                        <source src="path-to-showreel.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-                <div class="project">
-        <h2>Ophelia Sullivan - Disposable</h2>
-        <p>
-          Description of the project, highlighting Klementine's role, the
-          creative approach, and any challenges faced during the production.
-        </p>
-        <!-- Replace with the actual project image/video -->
-        <img src="Ophelia.jpeg" alt="Project 1 Image" />
-      </div>
-                <div class="project">
-                    <h2>Project 2: Title of the Work</h2>
-                    <p>Description of the project, highlighting Klementine's role, the creative approach, and any challenges faced during the production.</p>
-                    <video controls>
-                        <source src="path-to-project2.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                </div>
-            `;
-        } else if (section === "about-me") {
-          contentElement.innerHTML = `
-                <div id="about-me-section">
-                    <h2>About Me</h2>
-                    <p>Klementine Medved is a passionate Director of Photography and Cinematographer with a unique eye for visual storytelling. She has been involved in various projects as a DP, assistant, and production member, bringing a distinctive style and artistic approach to every project. With a deep understanding of lighting, framing, and composition, Klementine thrives on turning creative visions into reality, whether in film, documentaries, or commercial work.</p>
-                </div>
-            `;
-        } else if (section === "contact") {
-          contentElement.innerHTML = `
-                <div id="contact-section">
-                    <h2>Contact</h2>
-                    <p>You can reach Klementine Medved at:</p>
-                    <p>Email: <a href="mailto:klementine@example.com">klementine@example.com</a></p>
-                    <p>Phone: +123 456 7890</p>
-                    <p>Or follow her on social media: <a href="#">Instagram</a> | <a href="#">LinkedIn</a></p>
-                </div>
-            `;
-        }
+      // Function to handle section switching with fade transition
+      function showSection(sectionId) {
+        const sections = document.querySelectorAll(".section");
+        sections.forEach((section) => {
+          section.classList.remove("active");
+        });
+        setTimeout(() => {
+          document.getElementById(sectionId).classList.add("active");
+        }, 200);
       }
 
-      // Load "Selected Work" content by default on page load
-      window.onload = function () {
-        loadContent("selected-work");
-      };
+      // Toggle burger menu
+      function toggleMenu() {
+        const nav = document.getElementById("nav");
+        nav.style.display = nav.style.display === "flex" ? "none" : "flex";
+      }
     </script>
   </body>
 </html>
