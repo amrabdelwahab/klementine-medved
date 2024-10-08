@@ -3,14 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Klementine Portfolio</title>
+    <title>Klementine Medved Portfolio</title>
     <style>
-      body {
+      body,
+      html {
+        margin: 0;
+        padding: 0;
         font-family: Arial, sans-serif;
         background-color: #f7f7f7;
         color: #333;
-        margin: 0;
-        padding: 0;
       }
 
       header {
@@ -18,32 +19,46 @@
         color: #f7f7f7;
         padding: 20px;
         text-align: center;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
       }
 
       header h1 {
         margin: 0;
-        font-size: 2.5em;
+        font-size: 2em;
       }
 
-      header a {
+      nav {
+        text-align: center;
+        margin: 10px;
+      }
+
+      nav a {
         color: #a3d9a5;
         text-decoration: none;
-        font-size: 1em;
-        margin: 10px;
-        display: inline-block;
+        font-size: 1.2em;
+        margin: 0 15px;
+        cursor: pointer;
+      }
+
+      nav a:hover {
+        text-decoration: underline;
       }
 
       main {
         max-width: 1200px;
-        margin: 20px auto;
+        margin: 100px auto 20px auto;
         padding: 20px;
         background: #fff;
         border-radius: 8px;
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
       }
 
       .project {
-        margin-bottom: 40px;
+        margin-bottom: 60px; /* Increased space between projects */
         border-bottom: 1px solid #ddd;
         padding-bottom: 20px;
       }
@@ -62,10 +77,13 @@
 
       .project video,
       .project img {
-        width: 100%;
+        width: 80%; /* Adjusted width for images and videos */
         height: auto;
         border-radius: 8px;
         margin-top: 10px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
       }
 
       footer {
@@ -73,6 +91,7 @@
         padding: 20px;
         background: #333;
         color: #f7f7f7;
+        margin-top: 40px;
       }
 
       footer a {
@@ -83,65 +102,104 @@
       /* Responsive styling */
       @media (max-width: 768px) {
         header h1 {
-          font-size: 2em;
+          font-size: 1.8em;
+        }
+
+        nav a {
+          font-size: 1em;
         }
 
         .project h2 {
           font-size: 1.2em;
+        }
+
+        .project video,
+        .project img {
+          width: 100%; /* Full width for smaller screens */
         }
       }
     </style>
   </head>
   <body>
     <header>
-      <h1>Klementine's Portfolio</h1>
-      <a href="#showreel" id="showreel-link">Showreel</a>
+      <h1>Klementine Medved</h1>
+      <nav>
+        <a id="selected-work-menu" onclick="loadContent('selected-work')"
+          >Selected Work</a
+        >
+        <a id="about-me-menu" onclick="loadContent('about-me')">About Me</a>
+        <a id="contact-menu" onclick="loadContent('contact')">Contact</a>
+      </nav>
     </header>
 
-    <main>
-      <div id="showreel" class="project">
-        <h2>Showreel</h2>
-        <p>
-          A collection of Klementine's most notable work as a Director of
-          Photography and Cinematographer.
-        </p>
-        <!-- Replace with the actual video URL -->
-        <video controls>
-          <source src="path-to-showreel.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-
-      <div class="project">
-        <h2>Project 1: Title of the Work</h2>
-        <p>
-          Description of the project, highlighting Klementine's role, the
-          creative approach, and any challenges faced during the production.
-        </p>
-        <!-- Replace with the actual project image/video -->
-        <img src="path-to-image.jpg" alt="Project 1 Image" />
-      </div>
-
-      <div class="project">
-        <h2>Project 2: Title of the Work</h2>
-        <p>
-          Description of the project, highlighting Klementine's role, the
-          creative approach, and any challenges faced during the production.
-        </p>
-        <!-- Replace with the actual project image/video -->
-        <video controls>
-          <source src="path-to-project2.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-      </div>
-
-      <!-- Add more project sections as needed -->
+    <main id="content">
+      <!-- Default content will load the "Selected Work" section -->
     </main>
 
     <footer>
       <p>
-        © 2024 Klementine | <a href="mailto:klementine@example.com">Contact</a>
+        © 2024 Klementine Medved |
+        <a href="mailto:klementine@example.com">Contact</a>
       </p>
     </footer>
+
+    <script>
+      // JavaScript function to dynamically load content
+      function loadContent(section) {
+        const contentElement = document.getElementById("content");
+
+        if (section === "selected-work") {
+          contentElement.innerHTML = `
+                <div id="showreel" class="project">
+                    <h2>Showreel</h2>
+                    <p>A collection of Klementine's most notable work as a Director of Photography and Cinematographer.</p>
+                    <video controls>
+                        <source src="path-to-showreel.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+                <div class="project">
+        <h2>Ophelia Sullivan - Disposable</h2>
+        <p>
+          Description of the project, highlighting Klementine's role, the
+          creative approach, and any challenges faced during the production.
+        </p>
+        <!-- Replace with the actual project image/video -->
+        <img src="Ophelia.jpeg" alt="Project 1 Image" />
+      </div>
+                <div class="project">
+                    <h2>Project 2: Title of the Work</h2>
+                    <p>Description of the project, highlighting Klementine's role, the creative approach, and any challenges faced during the production.</p>
+                    <video controls>
+                        <source src="path-to-project2.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            `;
+        } else if (section === "about-me") {
+          contentElement.innerHTML = `
+                <div id="about-me-section">
+                    <h2>About Me</h2>
+                    <p>Klementine Medved is a passionate Director of Photography and Cinematographer with a unique eye for visual storytelling. She has been involved in various projects as a DP, assistant, and production member, bringing a distinctive style and artistic approach to every project. With a deep understanding of lighting, framing, and composition, Klementine thrives on turning creative visions into reality, whether in film, documentaries, or commercial work.</p>
+                </div>
+            `;
+        } else if (section === "contact") {
+          contentElement.innerHTML = `
+                <div id="contact-section">
+                    <h2>Contact</h2>
+                    <p>You can reach Klementine Medved at:</p>
+                    <p>Email: <a href="mailto:klementine@example.com">klementine@example.com</a></p>
+                    <p>Phone: +123 456 7890</p>
+                    <p>Or follow her on social media: <a href="#">Instagram</a> | <a href="#">LinkedIn</a></p>
+                </div>
+            `;
+        }
+      }
+
+      // Load "Selected Work" content by default on page load
+      window.onload = function () {
+        loadContent("selected-work");
+      };
+    </script>
   </body>
 </html>
