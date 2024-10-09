@@ -109,6 +109,27 @@
         filter: brightness(80%);
       }
 
+      .cover-photo:hover img {
+        transform: scale(1.05); /* Scale up image on hover */
+        filter: brightness(50%); /* Darken the image for contrast */
+      }
+
+      .overlay-title {
+        position: absolute;
+        bottom: 50%; /* Center the title */
+        left: 50%;
+        transform: translate(-50%, 50%); /* Offset for centering */
+        color: #f7f7f7;
+        font-size: 1.5em;
+        font-weight: 400;
+        text-align: center;
+        opacity: 0; /* Initially hidden */
+        transition: opacity 0.4s ease, transform 0.4s ease;
+      }
+      .cover-photo:hover .overlay-title {
+        opacity: 1; /* Show the title on hover */
+        transform: translate(-50%, 0); /* Move to center */
+      }
       /* Project Section */
       .project-container {
         position: relative;
@@ -249,9 +270,11 @@
       <div id="cover-photo-section" class="cover-photo-container">
         <div class="cover-photo" onclick="showProjectGrid('ophelia-project')">
           <img src="Ophelia/1.jpg" alt="Ophelia Cover Image" />
+          <div class="overlay-title">OPHELIA SULLIVAN - DISPOSABLE</div>
         </div>
         <div class="cover-photo" onclick="showProjectGrid('selva-project')">
           <img src="Selva/1.jpg" alt="Selva Cover Image" />
+          <div class="overlay-title">SELVA x CINETTICA</div>
         </div>
       </div>
 
