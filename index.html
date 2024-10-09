@@ -339,6 +339,7 @@
         const projectDetails = document.querySelectorAll(".project-details");
         projectDetails.forEach((details) => (details.style.display = "none"));
         document.getElementById(projectId).style.display = "block";
+        window.scrollTo(0, 0);
       }
 
       function goBack() {
