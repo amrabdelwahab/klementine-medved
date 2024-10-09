@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-  lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -20,6 +19,7 @@
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
+        height: 100%; /* Ensure body takes full height */
       }
 
       header {
@@ -63,30 +63,16 @@
         text-decoration: underline;
       }
 
-      .burger {
-        display: none;
-        cursor: pointer;
-        padding-right: 20px;
-      }
-
-      .burger div {
-        width: 25px;
-        height: 3px;
-        background: #d8d0ba;
-        margin: 5px;
-        transition: all 0.3s ease;
-      }
-
+      /* Main Content Styling */
       main {
         max-width: 100%;
-        margin: 100px auto 40px auto;
-        padding: 20px;
+        margin: 65px 0 0 0; /* Adjusted to make space for header */
+        padding-bottom: 0; /* Ensure content doesn't overlap footer */
         transition: opacity 0.5s ease-in-out;
       }
 
       .section {
         display: none;
-        opacity: 0;
         transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
         transform: translateY(20px);
       }
@@ -97,19 +83,74 @@
         transform: translateY(0);
       }
 
-      .section h2 {
-        font-size: 2em;
-        margin-bottom: 20px;
-        color: #5e5b52;
-        text-align: center;
+      /* Cover Photo Section */
+      .cover-photo-container {
+        width: 100%;
+        margin: 0; /* Remove margin to make cover photos full-width */
       }
 
+      .cover-photo {
+        width: 100%; /* Full-width cover photos */
+        cursor: pointer;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .cover-photo img {
+        width: 100%; /* Full-width images */
+        height: auto;
+        display: block;
+        transition: transform 0.4s ease, filter 0.4s ease;
+        border-radius: 0; /* Remove border-radius to extend full width */
+      }
+
+      .cover-photo img:hover {
+        transform: scale(1.05);
+        filter: brightness(80%);
+      }
+
+      /* Project Section */
+      .project-container {
+        position: relative;
+        padding-top: 20px; /* Space between menu and title */
+        padding-bottom: 60px; /* Ensure space between grid and footer */
+      }
+
+      .project-title {
+        font-size: 2.2em;
+        font-weight: 400;
+        color: #473d27;
+        margin: 10px 20px 10px 20px; /* Small space between title and grid */
+        letter-spacing: 1px;
+      }
+
+      /* Back Button Fix */
+      .back-button {
+        position: fixed; /* Fix the position so it's always visible */
+        top: 20px; /* Position it within the header space */
+        right: 30px;
+        cursor: pointer;
+        color: #473d27; /* Match header color */
+        font-size: 2em;
+        background: none;
+        border: none;
+        font-family: "Roboto", sans-serif;
+        font-weight: 200;
+        z-index: 1001; /* Ensure it's above other content */
+        transition: color 0.3s ease;
+      }
+
+      .back-button:hover {
+        color: #d8d0ba; /* Change color on hover */
+      }
+
+      /* Project Grid */
       .project-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr); /* 3 columns layout */
         gap: 20px;
         justify-items: center;
-        margin-bottom: 40px;
+        margin: 20px 20px; /* Smaller space between title and grid */
       }
 
       .project-item {
@@ -124,14 +165,12 @@
         height: auto;
         display: block;
         transition: transform 0.3s ease;
-        border-radius: 8px;
       }
 
       .project-item:hover {
         transform: scale(1.02);
       }
 
-      /* Skip Cells */
       .empty-cell {
         grid-column: span 1;
         width: 100%;
@@ -139,21 +178,12 @@
         visibility: hidden;
       }
 
-      /* Contact Section Styling */
-      .contact-info {
-        max-width: 600px;
-        margin: 0 auto;
-        padding: 20px;
-        background: rgba(0, 0, 0, 0.2);
-        border-radius: 10px;
-        color: #fff;
-      }
-
       footer {
         text-align: center;
         padding: 20px;
         background: #000;
         color: #f7f7f7;
+        position: relative; /* Fix positioning issues */
       }
 
       footer a {
@@ -183,8 +213,8 @@
           margin: 5px 0;
         }
 
-        .burger {
-          display: block;
+        .cover-photo {
+          width: 100%;
         }
 
         .project-grid {
@@ -215,69 +245,81 @@
     </header>
 
     <main>
-      <!-- Selected Work Section -->
-      <div id="selected-work" class="section active">
-        <h2>OPHELIA SULLIVAN - DISPOSABLE</h2>
-        <div class="project-grid">
-          <div class="project-item">
-            <img src="Ophelia/1.jpg" alt="Ophelia Image 1" />
-          </div>
-          <div class="project-item">
-            <img src="Ophelia/2.jpg" alt="Ophelia Image 2" />
-          </div>
-          <div class="empty-cell"></div>
-          <!-- Skip a cell -->
-          <div class="project-item">
-            <img src="Ophelia/3.jpg" alt="Ophelia Image 3" />
-          </div>
-          <div class="project-item">
-            <img src="Ophelia/4.jpg" alt="Ophelia Image 4" />
-          </div>
-          <div class="project-item">
-            <img src="Ophelia/5.jpg" alt="Ophelia Image 5" />
-          </div>
-          <div class="empty-cell"></div>
-          <div class="project-item">
-            <img src="Ophelia/6.jpg" alt="Ophelia Image 5" />
-          </div>
-          <div class="project-item">
-            <img src="Ophelia/7.jpg" alt="Ophelia Image 5" />
-          </div>
-          <div class="project-item">
-            <img src="Ophelia/8.jpg" alt="Ophelia Image 5" />
-          </div>
-          <div class="project-item">
-            <img src="Ophelia/9.jpg" alt="Ophelia Image 5" />
-          </div>
-          <div class="project-item">
-            <img src="Ophelia/10.jpg" alt="Ophelia Image 5" />
-          </div>
+      <!-- Cover Photos Section -->
+      <div id="cover-photo-section" class="cover-photo-container">
+        <div class="cover-photo" onclick="showProjectGrid('ophelia-project')">
+          <img src="Ophelia/1.jpg" alt="Ophelia Cover Image" />
         </div>
+        <div class="cover-photo" onclick="showProjectGrid('selva-project')">
+          <img src="Selva/1.jpg" alt="Selva Cover Image" />
+        </div>
+      </div>
 
-        <h2>SELVA x CINETTICA</h2>
-        <div class="project-grid">
-          <div class="project-item">
-            <img src="Selva/1.jpg" alt="Ophelia Image 1" />
-          </div>
-          <div class="empty-cell"></div>
-          <div class="empty-cell"></div>
+      <!-- Selected Work Section -->
+      <div id="selected-work" class="section">
+        <div class="project-container">
+          <button class="back-button" onclick="goBack()">X</button>
+          <div id="ophelia-project" class="project-details">
+            <h2 class="project-title">OPHELIA SULLIVAN - DISPOSABLE</h2>
+            <div class="project-grid">
+              <div class="project-item">
+                <img src="Ophelia/1.jpg" alt="Ophelia Image 2" />
+              </div>
+              <div class="project-item">
+                <img src="Ophelia/2.jpg" alt="Ophelia Image 2" />
+              </div>
+              <div class="empty-cell"></div>
+              <div class="project-item">
+                <img src="Ophelia/3.jpg" alt="Ophelia Image 3" />
+              </div>
+              <div class="project-item">
+                <img src="Ophelia/4.jpg" alt="Ophelia Image 3" />
+              </div>
+              <div class="project-item">
+                <img src="Ophelia/5.jpg" alt="Ophelia Image 3" />
+              </div>
+              <div class="project-item">
+                <img src="Ophelia/6.jpg" alt="Ophelia Image 3" />
+              </div>
+              <div class="project-item">
+                <img src="Ophelia/7.jpg" alt="Ophelia Image 3" />
+              </div>
+              <div class="project-item">
+                <img src="Ophelia/8.jpg" alt="Ophelia Image 3" />
+              </div>
 
-          <div class="project-item">
-            <img src="Selva/2.jpg" alt="Ophelia Image 2" />
+              <div class="project-item">
+                <img src="Ophelia/9.jpg" alt="Ophelia Image 3" />
+              </div>
+              <div class="project-item">
+                <img src="Ophelia/10.jpg" alt="Ophelia Image 3" />
+              </div>
+            </div>
           </div>
 
-          <div class="project-item">
-            <img src="Selva/3.jpg" alt="Ophelia Image 3" />
+          <div id="selva-project" class="project-details">
+            <h2 class="project-title">SELVA x CINETTICA</h2>
+            <div class="project-grid">
+              <div class="project-item">
+                <img src="Selva/1.jpg" alt="Selva Image 1" />
+              </div>
+              <div class="empty-cell"></div>
+              <div class="empty-cell"></div>
+              <div class="project-item">
+                <img src="Selva/2.jpg" alt="Selva Image 2" />
+              </div>
+              <div class="project-item">
+                <img src="Selva/3.jpg" alt="Selva Image 2" />
+              </div>
+              <div class="empty-cell"></div>
+              <div class="project-item">
+                <img src="Selva/4.jpg" alt="Selva Image 2" />
+              </div>
+              <div class="project-item">
+                <img src="Selva/5.jpg" alt="Selva Image 2" />
+              </div>
+            </div>
           </div>
-          <div class="empty-cell"></div>
-
-          <div class="project-item">
-            <img src="Selva/4.jpg" alt="Ophelia Image 4" />
-          </div>
-          <div class="project-item">
-            <img src="Selva/5.jpg" alt="Ophelia Image 5" />
-          </div>
-          <div class="empty-cell"></div>
         </div>
       </div>
     </main>
@@ -290,11 +332,28 @@
     </footer>
 
     <script>
-      function showSection(sectionId) {
-        const sections = document.querySelectorAll(".section");
-        sections.forEach((section) => section.classList.remove("active"));
-        document.getElementById(sectionId).classList.add("active");
+      function showProjectGrid(projectId) {
+        document.getElementById("cover-photo-section").style.display = "none";
+        document.getElementById("selected-work").style.display = "block";
+        window.history.pushState({ project: projectId }, "");
+        const projectDetails = document.querySelectorAll(".project-details");
+        projectDetails.forEach((details) => (details.style.display = "none"));
+        document.getElementById(projectId).style.display = "block";
       }
+
+      function goBack() {
+        document.getElementById("cover-photo-section").style.display = null;
+        document.getElementById("selected-work").style.display = "none";
+        window.history.pushState({}, "");
+      }
+
+      window.onpopstate = function (event) {
+        if (event.state && event.state.project) {
+          showProjectGrid(event.state.project);
+        } else {
+          goBack();
+        }
+      };
 
       function toggleMenu() {
         const nav = document.getElementById("nav");
